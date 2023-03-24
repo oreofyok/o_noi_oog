@@ -3,11 +3,18 @@ import random
 select_amount_of_com = int(input("how many com do you want to play: "))
 choices = ["f","b"]
 
+def change_dict_key(d, old_key, new_key, default_value=None):
+    d[new_key] = d.pop(old_key,default_value)
 
 def com_input(x):
     com = {}; com_out = []
     for i in range(1,x+1):
         com[f"com{[i]}"] = random.choice(choices)
+        
+    for i in com:
+        old = i
+        new = input(f"define your {i} name: ")
+        change_dict_key(com, old, new)
        
     play(com)
     
@@ -86,7 +93,7 @@ def play(com):
                     print("only you and",i,"left")
             
         if playing == True and stop != True and len(com) > 1:
-            player = input("f or b: ")
+            player = input("choose f or b: ")
             
         if player == "f":
             count_f += 1
