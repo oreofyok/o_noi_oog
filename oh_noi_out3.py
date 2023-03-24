@@ -32,14 +32,13 @@ def play2(com):
         #quit()
         
     elif len(com) == 2:
-        cc = {};cc1 = [];cc2 = [] ; rps = True
+        cc = {}; rps = True
         while rps == True:
+            cc1 = [];cc2 = []
             for i in com:
                 cc[i] = random.choice(["r","p","s"])
-                cc1.append(i)
-                cc2.append(cc[i])
-            print(cc)
-            print(cc2[0],cc2[1])
+                cc1.append(i) ; cc2.append(cc[i])
+            print(cc) ; print(cc2[0],cc2[1])
             if (cc2[0] == "r" and cc2[1] == "s") or (cc2[0] == "p" and cc2[1] == "r") or (cc2[0] == "s" and cc2[1] == "p"):
                 print(cc1[0],": win") ; rps = False
             elif (cc2[0] == "r" and cc2[1] == "p") or (cc2[0] == "p" and cc2[1] == "s") or (cc2[0] == "s" and cc2[1] == "r"):  
@@ -57,21 +56,15 @@ def play(com):
                 com[i] = random.choice(choices)
         
         print()
-        print("com =",com)
+        count_f = 0 ; count_b = 0
+        
+        
         player = " "
         
-        if playing == True and stop != True and len(com) > 1:
-            player = input("f or b: ")
         
         com_out = []
         play_ground = []
 
-        count_f = 0 ; count_b = 0
-
-        if player == "f":
-            count_f += 1
-        elif player == "b":
-            count_b += 1
         
         if com != None: 
             for i in com:
@@ -79,6 +72,26 @@ def play(com):
                     count_f += 1
                 elif com[i] == "b":
                     count_b += 1
+        
+        if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False :
+            print("com =",com)
+        else:
+            if count_b + count_f == 2 and playing == False:
+                c = []
+                for i in com:
+                    c.append(i)
+                print("only",c[0],"and",c[1],"left")
+            elif count_b + count_f == 1 and playing != False:
+                for i in com:
+                    print("only you and",i,"left")
+            
+        if playing == True and stop != True and len(com) > 1:
+            player = input("f or b: ")
+            
+        if player == "f":
+            count_f += 1
+        elif player == "b":
+            count_b += 1
 
         if count_b + count_f == 1 and playing == True:
             c = []
