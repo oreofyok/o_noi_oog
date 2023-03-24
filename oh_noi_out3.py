@@ -1,4 +1,5 @@
 import random
+import time
 
 select_amount_of_com = int(input("how many com do you want to play: "))
 choices = ["f","b"]
@@ -10,10 +11,17 @@ def com_input(x):
     com = {}; com_out = []
     for i in range(1,x+1):
         com[f"com{[i]}"] = random.choice(choices)
-        
+    
+    print()
+    time.sleep(.5)
+    
+    print("define com name")
+    print("spcae bar to use com[num] name")
     for i in com:
         old = i
         new = input(f"define your {i} name: ")
+        if len(new) == 0:
+            new = i
         change_dict_key(com, old, new)
        
     play(com)
@@ -45,7 +53,7 @@ def play2(com):
             for i in com:
                 cc[i] = random.choice(["r","p","s"])
                 cc1.append(i) ; cc2.append(cc[i])
-            print(cc) ; print(cc2[0],cc2[1])
+            print(cc) 
             if (cc2[0] == "r" and cc2[1] == "s") or (cc2[0] == "p" and cc2[1] == "r") or (cc2[0] == "s" and cc2[1] == "p"):
                 print(cc1[0],": win") ; rps = False
             elif (cc2[0] == "r" and cc2[1] == "p") or (cc2[0] == "p" and cc2[1] == "s") or (cc2[0] == "s" and cc2[1] == "r"):  
