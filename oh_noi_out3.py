@@ -8,7 +8,7 @@ def change_dict_key(d, old_key, new_key, default_value=None):
     d[new_key] = d.pop(old_key,default_value)
 
 def com_input(x):
-    com = {}; com_out = []
+    com = {}
     for i in range(1,x+1):
         com[f"com{[i]}"] = random.choice(choices)
     
