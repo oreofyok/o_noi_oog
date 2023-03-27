@@ -18,7 +18,7 @@ elif human == "2":
         else:
             break
         
-    select_amount_of_com = int(input("how many com do you want to play: "))
+    #select_amount_of_com = int(input("how many com do you want to play: "))
 
 choices = ["f","b"]
 
@@ -45,6 +45,7 @@ def com_input(x):
     return com
     
 def player_input(x):
+    global select_amount_of_com
     players = {}
     for i in range(1,x+1):
         players[f"player{[i]}"] = "s"
@@ -59,7 +60,7 @@ def player_input(x):
             new = i
         change_dict_key(players,old,new)
     
-    
+    select_amount_of_com = int(input("how many com do you want to play: "))
     return players
     #com_input(select_amount_of_com)
     
@@ -98,7 +99,7 @@ def play2(players,com):
                 elif cc2[0] == cc2[1]:
                     print('draw try again.')
     elif human == "2":
-        if len(players) == 2: # 2 players left
+        if playing == True and len(players) == 2: # 2 players left
             hh = {} ; rps = True
             while rps == True:
                 pp1 = [] ; pp2 = []
@@ -165,26 +166,26 @@ def play(players,com):
                     count_b += 1
         
         
-        # if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False:
-        #     print("com =",com)
-        # elif count_b + count_f == 1 and len(players) > 1:
-        #     print("com =",com)
-        # elif count_b + count_f == 1 and human == "2" and playing == True and len(players) == 1:
-        #     c = [] ; p = []
-        #     for i in com:
-        #         c.append(i)
-        #     for i in players:
-        #         p.append(i)
-        #     print(f"only {p[0]} and {c[0]} left")
-        # else:
-        #     if count_b + count_f == 2 and playing == False:
-        #         c = []
-        #         for i in com:
-        #             c.append(i)
-        #         print("only",c[0],"and",c[1],"left")
-        #     elif count_b + count_f == 1 and playing != False and human == "1":
-        #         for i in com:
-        #             print("only you and",i,"left")
+        if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False:
+            print("com =",com)
+        elif count_b + count_f == 1 and len(players) > 1:
+            print("com =",com)
+        elif count_b + count_f == 1 and human == "2" and playing == True and len(players) == 1:
+            c = [] ; p = []
+            for i in com:
+                c.append(i)
+            for i in players:
+                p.append(i)
+            print(f"only {p[0]} and {c[0]} left")
+        else:
+            if count_b + count_f == 2 and playing == False:
+                c = []
+                for i in com:
+                    c.append(i)
+                print("only",c[0],"and",c[1],"left")
+            elif count_b + count_f == 1 and playing != False and human == "1":
+                for i in com:
+                    print("only you and",i,"left")
                     
         if human == "1":
             if playing == True and stop != True and len(com) > 1:
@@ -206,8 +207,10 @@ def play(players,com):
                 pass
         
         if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False:
+            print("players =",players)
             print("com =",com)
         elif count_b + count_f == 1 and len(players) > 1:
+            print("players =",players)
             print("com =",com)
         elif count_b + count_f == 1 and human == "2" and playing == True and len(players) == 1:
             c = [] ; p = []
@@ -225,7 +228,7 @@ def play(players,com):
             elif count_b + count_f == 1 and playing != False and human == "1":
                 for i in com:
                     print("only you and",i,"left")
-        
+                    
         if human == "1":
             if count_b + count_f == 1 and playing == True:
                 c = []
