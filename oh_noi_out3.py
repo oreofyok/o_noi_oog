@@ -69,10 +69,15 @@ stop = False
 
 def play2(players,com):
     if human == "1":
-        if len(com) == 1:
+        if len(com) == 1: # player and com
             rps = True
             while rps == True:
-                me = input("r p s: ")
+                while True:
+                    me = input("r p s: ")
+                    if me == "r" or me == "p" or me == "s":
+                        break
+                    else:
+                        print("input only r p or s")
                 for i in com:
                     c_think = random.choice(["r","p","s"])
                     print(i,"choose",c_think)
@@ -84,7 +89,7 @@ def play2(players,com):
                     print("draw play again.")
             #quit()
             
-        elif len(com) == 2:
+        elif len(com) == 2: # no player
             cc = {}; rps = True
             while rps == True:
                 cc1 = [];cc2 = []
@@ -104,7 +109,12 @@ def play2(players,com):
             while rps == True:
                 pp1 = [] ; pp2 = []
                 for i in players:
-                    hh[i] = input(f"{i} select r,p,or s")
+                    while True:
+                        hh[i] = input(f"{i} select r,p,or s: ")
+                        if hh[i] == "r" or hh[i] == "p" or hh[i] == "s":
+                            break
+                        else:
+                            print("input only r p or s")
                     pp1.append(i) ; pp2.append(hh[i])
                 if (pp2[0] == "r" and pp2[1] == "s") or (pp2[0] == "p" and pp2[1] == "r") or (pp2[0] == "s" and pp2[1] == "p"):
                         print(cc1[0],": win") ; rps = False
@@ -116,7 +126,12 @@ def play2(players,com):
             rps = True
             while rps == True:
                 for p in players:
-                    me = input(f"{p} choose r,p,or s:")
+                    while True:
+                        me = input(f"{p} choose r,p,or s:")
+                        if me == "r" or me == "p" or me == "s":
+                            break
+                        else:
+                            print("input only r p or s")
                 for i in com:
                     c_think = random.choice(["r","p","s"])
                     print(i,"choose",c_think)
@@ -168,9 +183,9 @@ def play(players,com):
         
         if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False:
             print("com =",com)
-        elif count_b + count_f == 1 and len(players) > 1:
+        elif count_b + count_f == 1 and human == "2" and len(players) > 1:
             print("com =",com)
-        elif count_b + count_f == 1 and human == "2" and playing == True and len(players) == 1:
+        elif count_b + count_f == 1 and human == "2" and  playing == True and len(players) == 1:
             c = [] ; p = []
             for i in com:
                 c.append(i)
@@ -179,9 +194,7 @@ def play(players,com):
             print(f"only {p[0]} and {c[0]} left")
         else:
             if count_b + count_f == 2 and playing == False:
-                c = []
-                for i in com:
-                    c.append(i)
+                c = [i for i in com]
                 print("only",c[0],"and",c[1],"left")
             elif count_b + count_f == 1 and playing != False and human == "1":
                 for i in com:
@@ -189,7 +202,12 @@ def play(players,com):
                     
         if human == "1":
             if playing == True and stop != True and len(com) > 1:
-                player = input("choose f or b: ")
+                while True:
+                    player = input("You choose f or b: ").lower()
+                    if player == "f" or player == "b":
+                        break
+                    else:
+                        print("input only f or b")
                 if player == "f":
                     count_f += 1
                 elif player == "b":
@@ -197,7 +215,12 @@ def play(players,com):
         elif human == "2":
             if len(players) > 1 and len(com) >= 1 or len(players) >= 1 and len(com) > 1:
                 for p in players.keys():
-                    players[p] = input(f"{p} select f or b: ")
+                    while True:
+                        players[p] = input(f"{p} select f or b: ")
+                        if players[p] == "f" or players[p] == "b":
+                            break
+                        else:
+                            print("input only f or b")
                     if players[p] == "f":
                         count_f += 1
                     elif players[p] == "b":
@@ -209,7 +232,7 @@ def play(players,com):
         if count_b + count_f > 2 and playing == False or count_b + count_f > 1 and playing != False:
             print("players =",players)
             print("com =",com)
-        elif count_b + count_f == 1 and len(players) > 1:
+        elif count_b + count_f == 1 and human == "2" and len(players) > 1:
             print("players =",players)
             print("com =",com)
         elif count_b + count_f == 1 and human == "2" and playing == True and len(players) == 1:
@@ -221,9 +244,7 @@ def play(players,com):
             print(f"only {p[0]} and {c[0]} left")
         else:
             if count_b + count_f == 2 and playing == False:
-                c = []
-                for i in com:
-                    c.append(i)
+                c = [i for i in com]
                 print("only",c[0],"and",c[1],"left")
             elif count_b + count_f == 1 and playing != False and human == "1":
                 for i in com:
@@ -362,7 +383,7 @@ def play(players,com):
                             if i in com.keys():
                                 del com[i]
         
-        if len(players) == 0:
+        if human == "2" and len(players) == 0:
             playing = False
              
         if stop != True:
