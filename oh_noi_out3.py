@@ -40,12 +40,21 @@ def com_input(x):
     
     print()
     time.sleep(.5)
-    
-    print("define com name")
-    print("spcae bar to use com[num] name")
+    while True:
+        auto_com_name = input("input com name auto on or off: ")
+        if auto_com_name == "on" or auto_com_name == "off":
+            break
+        else:
+            print("input only on or off")
+    if auto_com_name == "off":
+        print("define com name")
+        print("spcae bar to use com[num] name")
     for i in list(com):
         old = i
-        new = input(f"define your {i} name: ")
+        if auto_com_name == "on":
+            new = i
+        elif auto_com_name == "off":
+            new = input(f"define your {i} name: ")
         if len(new) == 0:
             new = i
         change_dict_key(com, old, new)
@@ -57,19 +66,33 @@ def player_input(x):
     players = {}
     for i in range(1,x+1):
         players[f"player{[i]}"] = "s"
-        
-        
-    print("define your name")
-    print("space bar to ues player[num] name")
+    
+    while True:
+        auto_players_name = input("input players name auto on or off: ")
+        if auto_players_name == "on" or auto_players_name == "off":
+            break
+        else:
+            print("input only on or off")
+    if auto_players_name == "off":
+        print("define your name")
+        print("space bar to ues player[num] name")
     for i in list(players):
         old = i
-        new = input(f"define your {i} name: ")
+        if auto_players_name == "on":
+            new = i
+        elif auto_players_name == "off":
+            new = input(f"define your {i} name: ")
         if len(new) == 0:
             new = i
         change_dict_key(players,old,new)
     
     if human3 != True:
-        select_amount_of_com = int(input("how many com do you want to play: "))
+        while True:
+            select_amount_of_com = int(input("how many com do you want to play: "))
+            if select_amount_of_com > 2:
+                break
+            else:
+                print("must more than 2")
     return players
     #com_input(select_amount_of_com)
     
@@ -268,24 +291,25 @@ def play(players,com):
                     print("only you and",i,"left")
                     
         if human == "1":
-            if count_b + count_f == 1 and playing == True:
+            if count_b + count_f == 1 and playing == True:   # you and com go r p s
                 c = []
                 for i in com:
                     print(f"you and {i} go to r p and s")
                     c.append(i)
                 stop = True
                 play2(None,c)
-            elif count_b + count_f == 2 and playing == False:
+            elif count_b + count_f == 2 and playing == False:  # com and com go r p s
                 c = []
                 for i in com:
                     c.append(i)
                 print(f"{c[0]} and {c[1]} go to r p and s")
                 stop = True
                 play2(None,c)
-            elif count_f == count_b and count_f > 1 or count_f == 0 or count_b == 0:
-                print("draw")
+            elif count_f == count_b and count_f > 1 or count_f == 0 or count_b == 0:  # draw
+                print("draw f =",count_f,"b =",count_b)
             else:
                 if count_f > count_b:
+                    print("b outed")
                     if player == "b":
                         print("You win ,outed.")
                         print()
@@ -299,6 +323,7 @@ def play(players,com):
                         
                         
                 elif count_f < count_b:
+                    print("f outed")
                     if player == "b":
                         print("Go to next round.")
                         
@@ -312,7 +337,7 @@ def play(players,com):
                             if com[i] == "f":
                                 com_out.append(i)
                                 
-                print("com out =",com_out)
+                print("com out =",len(com_out),com_out)
                 if com != None:
                     for i in com_out:
                         if i in com.keys():
@@ -343,14 +368,15 @@ def play(players,com):
                 stop = True
                 play2(None,c)
             elif count_b == count_f and count_f > 1 or count_f == 0 or count_b == 0: # b = f and b,f != 0 or b == 0 or f == 0
-                print("draw")
+                print("draw f =",count_f,"b =",count_b)
             else:
                 if count_f > count_b and playing == True: # b < f and player still play
+                    print("b outed")
                     if human3 == False and com != None:
                         for i in com:
                             if com[i] == "b":
                                 com_out.append(i)
-                        print("com out =",com_out)
+                        print("com out =",len(com_out),com_out)
                         for i in com_out:
                             if i in com.keys():
                                 del com[i]
@@ -358,17 +384,18 @@ def play(players,com):
                         for i in players:
                             if players[i] == "b":
                                 play_out.append(i)
-                        print("player out =",play_out)
+                        print("player out =",len(play_out),play_out)
                         for i in play_out:
                             if i in players.keys():
                                 del players[i]
                                 
                 elif count_f < count_b and playing == True: # b > f and player still playing
+                    print("f outed")
                     if human3 == False and com != None:
                         for i in com:
                             if com[i] == "f":
                                 com_out.append(i)
-                        print("com out =",com_out)
+                        print("com out =",len(com_out),com_out)
                         for i in com_out:
                             if i in com.keys():
                                 del com[i]
@@ -376,26 +403,28 @@ def play(players,com):
                         for i in players:
                             if players[i] == "f":
                                 play_out.append(i)
-                        print("player out =",play_out)
+                        print("player out =",len(play_out),play_out)
                         for i in play_out:
                             if i in players.keys():
                                 del players[i]
                 elif count_f < count_b and playing == False: # b > f and player all out
+                    print("f outed")
                     if human3 == False and com != None:
                         for i in com:
                             if com[i] == "f":
                                 com_out.append(i)
                                 
-                        print("com out =",com_out)
+                        print("com out =",len(com_out),com_out)
                         for i in com_out:
                             if i in com.keys():
                                 del com[i]
                 elif count_f > count_b and playing == False: # b < f and player all out
+                    print("b outed")
                     if human3 == False and com != None:
                         for i in com:
                             if com[i] == "b":
                                 com_out.append(i)
-                        print("com out =",com_out)
+                        print("com out =",len(com_out),com_out)
                         for i in com_out:
                             if i in com.keys():
                                 del com[i]
@@ -410,13 +439,13 @@ def play(players,com):
         if game2 == False and human == "2":
             if len(players) != 0:
                 still_p = [i for i in players]
-                print("players left: ",still_p)
+                print("players left = ",len(still_p),still_p)
             if len(com) != 0:
                 still_c = [i for i in com]
-                print("com left: ",still_c)
+                print("com left = ",len(still_c),still_c)
              
-        if stop != True:
-            play(players,com)
+        # if stop != True:
+        #     play(players,com)
 
 
 if human == "1":
@@ -429,6 +458,12 @@ elif human == "3":
 elif human == "4":
     human4 = True
     human = "2"
-    select_amount_of_com = int(input("how many com do you want to play: "))
+    while True:
+        select_amount_of_com = int(input("how many com do you want to play: "))
+        if select_amount_of_com > 2:
+            break
+        else:
+            print("must more than 2")
+            
     play({},com_input(select_amount_of_com))
 
