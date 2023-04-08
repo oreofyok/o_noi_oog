@@ -64,8 +64,10 @@ def com_input(x):
         if auto_com_name == "on":
             if auto_com_count < 10:
                 print(old ,"=",new) ; auto_com_count += 1 ; time.sleep(.1)
-            elif auto_com_count == 10:
-                print(old ,"=",new) ; time.sleep(.01)
+            elif auto_com_count >= 10 and auto_com_count < 100:
+                print(old ,"=",new) ; auto_com_count += 1 ; time.sleep(.01)
+            elif auto_com_count >= 100:
+                print(old ,"=",new)
     
     return com
     
@@ -97,8 +99,10 @@ def player_input(x):
         if auto_players_name == "on":
             if auto_players_count < 10:
                 print(old,"=",new) ; auto_players_count += 1 ; time.sleep(.1)
-            elif auto_players_count == 10:
-                print(old,"=",new) ; time.sleep(.01)
+            elif auto_players_count >= 10 and auto_players_count < 100:
+                print(old,"=",new) ; auto_players_count += 1 ; time.sleep(.01)
+            elif auto_players_count >= 100:
+                print(old,"=",new)
     
     if human3 != True:
         while True:
@@ -266,9 +270,16 @@ def play(players,com):
             if len(players) > 1 and len(com) >= 1 or len(players) >= 1 and len(com) > 1 or len(players) > 2 and len(com) == 0:
                 for p in players.keys():
                     while True:
-                        players[p] = input(f"{p} select f or b: ")
+                        players[p] = input(f"{p} select f or b: ").lower()
                         if players[p] == "f" or players[p] == "b":
                             break
+                        elif players[p] == "q":
+                            quitt = input("Sure to Quit? y or n: ").lower()
+                            if quitt == "y":
+                                print("Game Quit")
+                                quit()
+                            else:
+                                print("OK back to the game")
                         else:
                             print("input only f or b")
                     if players[p] == "f":
