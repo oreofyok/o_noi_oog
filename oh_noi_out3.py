@@ -31,7 +31,8 @@ elif human == "2" or human == "3":
 choices = ["f","b"]
 
 def change_dict_key(d, old_key, new_key, default_value=None):
-    d[new_key] = d.pop(old_key,default_value)
+    d[new_key] = d.pop(old_key,default_value) 
+    
 
 def com_input(x):
     com = {}
@@ -49,6 +50,7 @@ def com_input(x):
     if auto_com_name == "off":
         print("define com name")
         print("spcae bar to use com[num] name")
+    auto_com_count = 0
     for i in list(com):
         old = i
         if auto_com_name == "on":
@@ -58,6 +60,12 @@ def com_input(x):
         if len(new) == 0:
             new = i
         change_dict_key(com, old, new)
+        
+        if auto_com_name == "on":
+            if auto_com_count < 10:
+                print(old ,"=",new) ; auto_com_count += 1 ; time.sleep(.1)
+            elif auto_com_count == 10:
+                print(old ,"=",new) ; time.sleep(.01)
     
     return com
     
@@ -76,6 +84,7 @@ def player_input(x):
     if auto_players_name == "off":
         print("define your name")
         print("space bar to ues player[num] name")
+    auto_players_count = 0
     for i in list(players):
         old = i
         if auto_players_name == "on":
@@ -85,6 +94,11 @@ def player_input(x):
         if len(new) == 0:
             new = i
         change_dict_key(players,old,new)
+        if auto_players_name == "on":
+            if auto_players_count < 10:
+                print(old,"=",new) ; auto_players_count += 1 ; time.sleep(.1)
+            elif auto_players_count == 10:
+                print(old,"=",new) ; time.sleep(.01)
     
     if human3 != True:
         while True:
