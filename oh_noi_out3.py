@@ -4,6 +4,8 @@ import time
 human3 = False
 human4 = False
 game2 = False
+
+print("This game will find who is final lose")
 while True:
     human = input("1.solo or 2.multi players 3.only players 4.only com: ")
     if human == "1" or human == "2" or human == "3" or human == "4":
@@ -133,9 +135,9 @@ def play2(players,com):
                     c_think = random.choice(["r","p","s"])
                     print(i,"choose",c_think)
                 if (me == "r" and c_think == "s") or (me == "p" and c_think == "r") or (me == "s" and c_think == "p"):
-                    print("you win") ; rps = False
+                    print("you win") ; print(i,"is the final lose");rps = False
                 elif (me == "r" and c_think == "p") or (me == "p" and c_think == "s") or (me == "s" and c_think == "r"):
-                    print(i,": win") ; rps = False
+                    print(i,": win") ; print("you are the final lose"); rps = False
                 elif me == c_think:
                     print("draw play again.")
             #quit()
@@ -149,9 +151,9 @@ def play2(players,com):
                     cc1.append(i) ; cc2.append(cc[i])
                 print(cc) 
                 if (cc2[0] == "r" and cc2[1] == "s") or (cc2[0] == "p" and cc2[1] == "r") or (cc2[0] == "s" and cc2[1] == "p"):
-                    print(cc1[0],": win") ; rps = False
+                    print(cc1[0],": win") ; print(cc1[1],"is the final lose");rps = False
                 elif (cc2[0] == "r" and cc2[1] == "p") or (cc2[0] == "p" and cc2[1] == "s") or (cc2[0] == "s" and cc2[1] == "r"):  
-                    print(cc1[1],": win") ; rps = False
+                    print(cc1[1],": win") ; print(cc1[0],"is the final lose");rps = False
                 elif cc2[0] == cc2[1]:
                     print('draw try again.')
     elif human == "2":
@@ -168,9 +170,9 @@ def play2(players,com):
                             print("input only r p or s")
                     pp1.append(i) ; pp2.append(hh[i])
                 if (pp2[0] == "r" and pp2[1] == "s") or (pp2[0] == "p" and pp2[1] == "r") or (pp2[0] == "s" and pp2[1] == "p"):
-                        print(pp1[0],": win") ; rps = False
+                        print(pp1[0],": win") ; print(pp1[1],"is the final lose"); rps = False
                 elif (pp2[0] == "r" and pp2[1] == "p") or (pp2[0] == "p" and pp2[1] == "s") or (pp2[0] == "s" and pp2[1] == "r"):  
-                    print(pp1[1],": win") ; rps = False
+                    print(pp1[1],": win") ; print(pp1[0],"is the final lose"); rps = False
                 elif pp2[0] == pp2[1]:
                     print('draw try again.')
         elif len(com) == 1: # 1 player and 1 com left
@@ -187,9 +189,9 @@ def play2(players,com):
                     c_think = random.choice(["r","p","s"])
                     print(i,"choose",c_think)
                 if (me == "r" and c_think == "s") or (me == "p" and c_think == "r") or (me == "s" and c_think == "p"):
-                    print(p,"win") ; rps = False
+                    print(p,"win") ; print(i,"is the final lose");rps = False
                 elif (me == "r" and c_think == "p") or (me == "p" and c_think == "s") or (me == "s" and c_think == "r"):
-                    print(i,": win") ; rps = False
+                    print(i,": win") ; print(p,"is the final lose"); rps = False
                 elif me == c_think:
                     print("draw play again.")
         elif len(com) == 2: # 2 com left
@@ -201,9 +203,9 @@ def play2(players,com):
                     cc1.append(i) ; cc2.append(cc[i])
                 print(cc) 
                 if (cc2[0] == "r" and cc2[1] == "s") or (cc2[0] == "p" and cc2[1] == "r") or (cc2[0] == "s" and cc2[1] == "p"):
-                    print(cc1[0],": win") ; rps = False
+                    print(cc1[0],": win") ; print(cc1[1],"is the final lose"); rps = False
                 elif (cc2[0] == "r" and cc2[1] == "p") or (cc2[0] == "p" and cc2[1] == "s") or (cc2[0] == "s" and cc2[1] == "r"):  
-                    print(cc1[1],": win") ; rps = False
+                    print(cc1[1],": win") ; print(cc1[0],"is the final lose");rps = False
                 elif cc2[0] == cc2[1]:
                     print('draw try again.')
                     
